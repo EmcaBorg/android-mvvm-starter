@@ -1,0 +1,111 @@
+apply plugin: "com.android.application"
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "android.mvvm.starter"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"\"")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+        innerTest {
+            matchingFallbacks = ["debug", "release"]
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        local {
+            applicationIdSuffix ".local"
+            buildConfigField("String", "ENV", "\"LOCAL\"")
+            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "WEBSOCKET", "\"\"")
+            resValue "string", "app_name", "Android MVVM Starter (Local)"
+        }
+
+        development {
+            applicationIdSuffix ".development"
+            buildConfigField("String", "ENV", "\"DEV\"")
+            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "WEBSOCKET", "\"\"")
+            resValue "string", "app_name", "Android MVVM Starter (Development)"
+        }
+
+        releaseCandidate {
+            applicationIdSuffix ".test"
+            buildConfigField("String", "ENV", "\"TEST\"")
+            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "WEBSOCKET", "\"\"")
+            resValue "string", "app_name", "Android MVVM Starter (Test)"
+        }
+
+        demo {
+            applicationIdSuffix ".demo"
+            buildConfigField("String", "ENV", "\"DEMO\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.emcaborg.com\"")
+            buildConfigField("String", "WEBSOCKET", "\"\"")
+            resValue "string", "app_name", "Android MVVM Starter (Demo)"
+        }
+
+        production {
+            buildConfigField("String", "ENV", "\"PROD\"")
+            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "WEBSOCKET", "\"\"")
+            resValue "string", "app_name", "Android MVVM Starter"
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        lintConfig file("${project.rootDir}/app/lint.xml")
+        htmlReport true
+        htmlOutput file("$project.buildDir/outputs/lint-report.html")
+        disable "InvalidPackage"
+    }
+
+    dependencies {
+        implementation fileTree(dir: "libs", include: ["*.jar"])
+        implementation project(":domain")
+        implementation project(":data")
+
+        //ANDROID SUPPORT
+        implementation "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
+        implementation "com.android.support:design:${rootProject.ext.appcompatVersion}"
+        implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayoutVersion}"
+        implementation "android.arch.lifecycle:extensions:${rootProject.ext.extensionsVersion}"
+
+        //DI
+        implementation "com.google.dagger:dagger:${rootProject.ext.daggerVersion}"
+        annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+        implementation "com.google.dagger:dagger-android:${rootProject.ext.daggerVersion}"
+        implementation "com.google.dagger:dagger-android-support:${rootProject.ext.daggerVersion}"
+        annotationProcessor "com.google.dagger:dagger-android-processor:${rootProject.ext.daggerVersion}"
+
+        //RX-JAVA2
+        implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+        implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
+
+        //TEST
+        testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+        androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
+        androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
+
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}

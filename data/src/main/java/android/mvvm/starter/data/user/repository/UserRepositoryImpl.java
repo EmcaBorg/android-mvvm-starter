@@ -22,9 +22,6 @@ public class UserRepositoryImpl implements UserRepository {
     public UserRepositoryImpl(UserApiDataSource userApiDataSource, UserCacheDataSource userCacheDataSource) {
         this.userApiDataSource = userApiDataSource;
         this.userCacheDataSource = userCacheDataSource;
-        if (this.userApiDataSource != null && this.userCacheDataSource != null) {
-            Log.d(Constants.LOG_TAG, "UserRepositoryImpl INJECTED");
-        }
     }
 
     @Override

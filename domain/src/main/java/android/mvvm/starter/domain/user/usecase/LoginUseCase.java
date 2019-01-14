@@ -1,6 +1,6 @@
 package android.mvvm.starter.domain.user.usecase;
 
-import android.mvvm.starter.domain.common.base.CompletableUseCase;
+import android.mvvm.starter.domain.base.CompletableUseCase;
 import android.mvvm.starter.domain.user.models.LoginRequest;
 import android.mvvm.starter.domain.user.repository.UserRepository;
 
@@ -15,7 +15,7 @@ public class LoginUseCase extends CompletableUseCase<LoginRequest> {
     private UserRepository userRepository;
 
     @Inject
-    public LoginUseCase(UserRepository userRepository, @Named("IO") Scheduler scheduler, @Named("MAIN") Scheduler mainScheduler) {
+    public LoginUseCase(@Named("IO") Scheduler scheduler, @Named("MAIN") Scheduler mainScheduler, UserRepository userRepository) {
         super(scheduler, mainScheduler);
         this.userRepository = userRepository;
     }

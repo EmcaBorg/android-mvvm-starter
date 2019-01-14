@@ -11,6 +11,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"\"")
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        abortOnError true
+        lintConfig file("${project.rootDir}/app/lint.xml")
+        htmlReport true
+        htmlOutput file("$project.buildDir/outputs/lint-report.html")
+        disable "InvalidPackage"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,7 +49,7 @@ android {
         development {
             applicationIdSuffix ".development"
             buildConfigField("String", "ENV", "\"DEV\"")
-            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "BASE_URL", "\"https://device-management.development.allexis.io/\"")
             buildConfigField("String", "WEBSOCKET", "\"\"")
             resValue "string", "app_name", "Android MVVM Starter (Development)"
         }
@@ -52,7 +65,7 @@ android {
         demo {
             applicationIdSuffix ".demo"
             buildConfigField("String", "ENV", "\"DEMO\"")
-            buildConfigField("String", "BASE_URL", "\"http://www.emcaborg.com\"")
+            buildConfigField("String", "BASE_URL", "\"\"")
             buildConfigField("String", "WEBSOCKET", "\"\"")
             resValue "string", "app_name", "Android MVVM Starter (Demo)"
         }
@@ -63,14 +76,6 @@ android {
             buildConfigField("String", "WEBSOCKET", "\"\"")
             resValue "string", "app_name", "Android MVVM Starter"
         }
-    }
-
-    lintOptions {
-        abortOnError true
-        lintConfig file("${project.rootDir}/app/lint.xml")
-        htmlReport true
-        htmlOutput file("$project.buildDir/outputs/lint-report.html")
-        disable "InvalidPackage"
     }
 
     dependencies {

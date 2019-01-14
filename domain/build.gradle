@@ -18,6 +18,8 @@ dependencies {
     compileOnly "org.projectlombok:lombok:${rootProject.ext.lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${rootProject.ext.lombokVersion}"
 
+    api "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

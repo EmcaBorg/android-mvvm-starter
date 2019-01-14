@@ -1,4 +1,4 @@
-package android.mvvm.starter.domain.common.base;
+package android.mvvm.starter.domain.base;
 
 /***
  *

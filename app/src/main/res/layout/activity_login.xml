@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="loginViewModel"
+            name="viewModel"
             type="android.mvvm.starter.user.LoginViewModel" />
     </data>
 
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Domain"
                     android:inputType="textEmailAddress"
-                    android:text="@={loginViewModel.domain}"/>
+                    android:text="@={loginViewModel.domain}" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Username"
                     android:inputType="textEmailAddress"
-                    android:text="@={loginViewModel.username}"/>
+                    android:text="@={loginViewModel.username}" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Password Label -->
@@ -62,13 +62,13 @@
                 android:layout_marginBottom="8dp">
 
                 <EditText
-                    passwordValidator="@{loginViewModel.password}"
                     android:id="@+id/input_password"
+                    passwordValidator="@{loginViewModel.password}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:text="@={loginViewModel.password}"/>
+                    android:text="@={loginViewModel.password}" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
@@ -77,9 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:onClick="@{() -> loginViewModel.login()}"
                 android:padding="12dp"
-                android:text="Login"
-                android:onClick="@{() -> loginViewModel.login()}"/>
+                android:text="Login" />
 
             <TextView
                 android:id="@+id/link_signup"

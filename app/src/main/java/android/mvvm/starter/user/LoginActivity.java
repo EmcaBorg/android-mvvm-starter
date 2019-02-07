@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         LoginViewModel loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel.class);
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        binding.setLoginViewModel(loginViewModel);
+        binding.setViewModel(loginViewModel);
         binding.setLifecycleOwner(this);
 
     }
